@@ -10,8 +10,9 @@ class App {
         }
 }
 
-data class Doller(var amount: Int){ // TODO limit scope
+class Doller(var amount: Int){ // TODO limit scope
     fun times(multiplier: Int): Doller = Doller(amount * multiplier)
+    override fun equals(other: Any?) = (other is Doller) && amount == other.amount
 }
 
 fun main(args: Array<String>) {

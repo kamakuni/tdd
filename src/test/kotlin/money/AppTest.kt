@@ -7,6 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlin.test.assertFalse
 
 class AppTest {
     @Test fun testMultiplication() {
@@ -19,5 +20,6 @@ class AppTest {
 
     @Test fun testEquality() {
         assertTrue(Doller(5).equals(Doller(5)))
+        assertFalse(Doller(5).equals(Doller(6)))
     }
 }
