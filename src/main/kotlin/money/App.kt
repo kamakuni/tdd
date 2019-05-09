@@ -10,8 +10,8 @@ class App {
         }
 }
 
-class Doller {
-    
+class Doller(var amount: Int){ // TODO limit scope
+    fun times(multiplier: Int): Doller = Doller(amount * multiplier)
 }
 
 fun main(args: Array<String>) {
