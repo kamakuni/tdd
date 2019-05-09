@@ -10,6 +10,10 @@ class App {
         }
 }
 
+class Doller {
+    
+}
+
 fun main(args: Array<String>) {
     println(App().greeting)
 }
