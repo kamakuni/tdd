@@ -6,6 +6,7 @@ package money
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class AppTest {
     @Test fun testMultiplication() {
@@ -14,5 +15,9 @@ class AppTest {
         assertEquals(10, ten.amount)
         val fifteen = five.times(3)
         assertEquals(15, fifteen.amount)
+    }
+
+    @Test fun testEquality() {
+        assertTrue(Doller(5).equals(Doller(5)))
     }
 }
