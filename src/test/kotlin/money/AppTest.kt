@@ -12,10 +12,8 @@ import kotlin.test.assertFalse
 class AppTest {
     @Test fun testMultiplication() {
         val five = Doller(5)
-        val ten = five.times(2)
-        assertEquals(10, ten.amount)
-        val fifteen = five.times(3)
-        assertEquals(15, fifteen.amount)
+        assertEquals(Doller(10), five.times(2))
+        assertEquals(Doller(15), five.times(3))
     }
 
     @Test fun testEquality() {
