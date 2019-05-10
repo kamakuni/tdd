@@ -3,9 +3,14 @@
  */
 package money
 
-class Doller(val amount: Int){ // TODO limit scope
+class Doller(val amount: Int){
     fun times(multiplier: Int): Doller = Doller(amount * multiplier)
     override fun equals(other: Any?) = (other is Doller) && amount == other.amount
+}
+
+class Franc(val amount: Int){
+    fun times(multiplier: Int): Franc = Franc(amount * multiplier)
+    override fun equals(other: Any?) = (other is Franc) && amount == other.amount
 }
 
 fun main(args: Array<String>) {

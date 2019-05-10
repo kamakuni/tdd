@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.assertFalse
 
-class AppTest {
+class MoneyTest {
     @Test fun testMultiplication() {
         val five = Doller(5)
         assertEquals(Doller(10), five.times(2))
@@ -20,4 +20,11 @@ class AppTest {
         assertTrue(Doller(5).equals(Doller(5)))
         assertFalse(Doller(5).equals(Doller(6)))
     }
+
+    @Test fun testFrancMultiplication() {
+        val five = Franc(5)
+        assertEquals(Franc(10), five.times(2))
+        assertEquals(Franc(15), five.times(3))
+    }
+
 }
