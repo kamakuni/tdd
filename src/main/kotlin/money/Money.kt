@@ -3,17 +3,16 @@
  */
 package money
 
-open class Money {
+open class Money(open val amount: Int) {
+    override fun equals(other: Any?) = (other is Money) && amount == other.amount
 }
 
-class Doller(val amount: Int): Money() {
+class Doller(override val amount: Int): Money(amount) {
     fun times(multiplier: Int): Doller = Doller(amount * multiplier)
-    override fun equals(other: Any?) = (other is Doller) && amount == other.amount
 }
 
-class Franc(val amount: Int): Money() {
+class Franc(override val amount: Int): Money(amount) {
     fun times(multiplier: Int): Franc = Franc(amount * multiplier)
-    override fun equals(other: Any?) = (other is Franc) && amount == other.amount
 }
 
 fun main(args: Array<String>) {
