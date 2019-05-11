@@ -4,11 +4,11 @@
 package money
 
 open class Money(open val amount: Int) {
-    override fun equals(other: Any?) = (other is Money) && amount == other.amount
+    override fun equals(other: Any?) = (other is Money) && amount == other.amount && this::class.simpleName == other::class.simpleName
 }
 
-class Doller(override val amount: Int): Money(amount) {
-    fun times(multiplier: Int): Doller = Doller(amount * multiplier)
+class Dollar(override val amount: Int): Money(amount) {
+    fun times(multiplier: Int): Dollar = Dollar(amount * multiplier)
 }
 
 class Franc(override val amount: Int): Money(amount) {

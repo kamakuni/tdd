@@ -11,16 +11,17 @@ import kotlin.test.assertFalse
 
 class MoneyTest {
     @Test fun testMultiplication() {
-        val five = Doller(5)
-        assertEquals(Doller(10), five.times(2))
-        assertEquals(Doller(15), five.times(3))
+        val five = Dollar(5)
+        assertEquals(Dollar(10), five.times(2))
+        assertEquals(Dollar(15), five.times(3))
     }
 
     @Test fun testEquality() {
-        assertTrue(Doller(5).equals(Doller(5)))
-        assertFalse(Doller(5).equals(Doller(6)))
+        assertTrue(Dollar(5).equals(Dollar(5)))
+        assertFalse(Dollar(5).equals(Dollar(6)))
         assertTrue(Franc(5).equals(Franc(5)))
         assertFalse(Franc(5).equals(Franc(6)))
+        assertFalse(Franc(5).equals(Dollar(5)))
     }
 
     @Test fun testFrancMultiplication() {
