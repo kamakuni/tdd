@@ -10,14 +10,17 @@ abstract class Money(open val amount: Int) {
     }
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this::class.simpleName == other::class.simpleName
     abstract fun times(multiplier: Int): Money
+    abstract fun currency(): String
 }
 
 class Dollar(override val amount: Int): Money(amount) {
     override fun times(multiplier: Int): Money = Dollar(amount * multiplier)
+    override fun currency() = "USD"
 }
 
 class Franc(override val amount: Int): Money(amount) {
     override fun times(multiplier: Int): Money = Franc(amount * multiplier)
+    override fun currency() = "CHF"
 }
 
 fun main(args: Array<String>) {
