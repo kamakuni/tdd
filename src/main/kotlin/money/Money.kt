@@ -3,21 +3,22 @@
  */
 package money
 
-abstract class Money(open val amount: Int) {
-    companion object {
-        fun dollar(amount: Int) = Dollar(amount)
-        fun franc(amount: Int) = Franc(amount)
+abstract class Money(open val amount: Int, open val currency: String) {
+    public companion object {
+        fun dollar(amount: Int) = Dollar(amount, "USD")
+        fun franc(amount: Int) = Franc(amount, "CHF")
     }
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this::class.simpleName == other::class.simpleName
     abstract fun times(multiplier: Int): Money
+    public fun currency():String = currency
 }
 
-class Dollar(override val amount: Int): Money(amount) {
-    override fun times(multiplier: Int): Money = Dollar(amount * multiplier)
+class Dollar(override val amount: Int, override val currency: String): Money(amount, currency) {
+    override fun times(multiplier: Int): Money = Money.dollar(amount * multiplier)
 }
 
-class Franc(override val amount: Int): Money(amount) {
-    override fun times(multiplier: Int): Money = Franc(amount * multiplier)
+class Franc(override val amount: Int, override val currency: String) : Money(amount, currency) {
+    override fun times(multiplier: Int): Money = Money.franc(amount * multiplier)
 }
 
 fun main(args: Array<String>) {
