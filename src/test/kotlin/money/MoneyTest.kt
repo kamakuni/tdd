@@ -19,6 +19,8 @@ class MoneyTest {
     @Test fun testEquality() {
         assertTrue(Doller(5).equals(Doller(5)))
         assertFalse(Doller(5).equals(Doller(6)))
+        assertTrue(Franc(5).equals(Franc(5)))
+        assertFalse(Franc(5).equals(Franc(6)))
     }
 
     @Test fun testFrancMultiplication() {
