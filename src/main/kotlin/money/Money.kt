@@ -14,10 +14,6 @@ open class Money(open val amount: Int, open val currency: String) {
     override fun toString(): String = "${amount} ${currency}"
 }
 
-class Dollar(override val amount: Int, override val currency: String): Money(amount, currency) {}
-
-class Franc(override val amount: Int, override val currency: String) : Money(amount, currency) {}
-
 fun main(args: Array<String>) {
     println("Nothing")
 }
