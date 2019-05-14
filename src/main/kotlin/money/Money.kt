@@ -10,7 +10,8 @@ open class Money(open val amount: Int, open val currency: String) {
     }
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this.currency == other.currency
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
-    public fun currency():String = currency
+    fun currency():String = currency
+    fun plus(addend: Money):Money = Money(this.amount + addend.amount, this.currency)
     override fun toString(): String = "${amount} ${currency}"
 }
 
