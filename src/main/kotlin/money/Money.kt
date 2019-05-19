@@ -14,7 +14,7 @@ open class Money(open val amount: Int, open val currency: String): Expression {
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this.currency == other.currency
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
     fun currency():String = currency
-    fun plus(addend: Money):Expression = Money(this.amount + addend.amount, this.currency)
+    fun plus(addend: Money):Sum = Sum(this, addend)
     override fun toString(): String = "${amount} ${currency}"
 }
 
@@ -22,6 +22,11 @@ class Bank(){
     fun reduce(source: Expression, to: String): Money {
         return Money.dollar(10)
     }
+}
+
+class Sum(augend: Money, addend: Money): Expression{
+    public val augend : Money = augend
+    public val addend : Money = addend
 }
 
 fun main(args: Array<String>) {
