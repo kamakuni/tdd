@@ -3,7 +3,7 @@
  */
 package money
 interface Expression{
-
+    fun reduce(to: String): Money
 }
 
 open class Money(open val amount: Int, open val currency: String): Expression {
@@ -13,20 +13,25 @@ open class Money(open val amount: Int, open val currency: String): Expression {
     }
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this.currency == other.currency
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
-    fun currency():String = currency
     fun plus(addend: Money):Sum = Sum(this, addend)
+    override fun reduce(to: String) = this
+    fun currency():String = currency
     override fun toString(): String = "${amount} ${currency}"
 }
 
 class Bank(){
     fun reduce(source: Expression, to: String): Money {
-        return Money.dollar(10)
+        return source.reduce(to)
     }
 }
 
 class Sum(augend: Money, addend: Money): Expression{
     public val augend : Money = augend
     public val addend : Money = addend
+    override fun reduce(to: String): Money{
+        val amount = augend.amount + addend.amount
+        return Money(amount, to)
+    }
 }
 
 fun main(args: Array<String>) {
