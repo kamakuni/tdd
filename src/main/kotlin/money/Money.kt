@@ -3,7 +3,7 @@
  */
 package money
 interface Expression{
-    fun reduce(to: String): Money
+    fun reduce(bank: Bank, to: String): Money
 }
 
 open class Money(open val amount: Int, open val currency: String): Expression {
@@ -14,25 +14,38 @@ open class Money(open val amount: Int, open val currency: String): Expression {
     override fun equals(other: Any?) = (other is Money) && amount == other.amount && this.currency == other.currency
     fun times(multiplier: Int): Money = Money(amount * multiplier, currency)
     fun plus(addend: Money):Sum = Sum(this, addend)
-    override fun reduce(to: String) = this
+    override fun reduce(bank: Bank, to: String): Money {
+        val rate = bank.rate(currency, to);
+        return Money(amount / rate, to)
+    }
     fun currency():String = currency
     override fun toString(): String = "${amount} ${currency}"
 }
 
 class Bank(){
+    val rates = mutableMapOf<Pair, Int>()
     fun reduce(source: Expression, to: String): Money {
-        return source.reduce(to)
+        return source.reduce(this, to)
+    }
+    fun addRate(from: String, to: String, rate: Int) {
+        rates[Pair(from,to)] = rate
+    }
+    fun rate(from: String, to: String):Int {
+        if (from.equals(to)) return 1
+        return rates[Pair(from,to)] ?: 0
     }
 }
 
 class Sum(augend: Money, addend: Money): Expression{
     public val augend : Money = augend
     public val addend : Money = addend
-    override fun reduce(to: String): Money{
+    override fun reduce(bank: Bank, to: String): Money{
         val amount = augend.amount + addend.amount
         return Money(amount, to)
     }
 }
+
+data class Pair(val from: String, val to: String) {}
 
 fun main(args: Array<String>) {
     println("Nothing")
